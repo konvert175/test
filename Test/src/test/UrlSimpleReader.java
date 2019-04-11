@@ -7,6 +7,7 @@ package test;
 
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,12 +15,12 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User
+ * @author User 
  */
 public class UrlSimpleReader implements SomeReader {
 
     @Override
-    public LinkedList<String> Read(String url) 
+    public LinkedList<String> Read(String url,String regmask) 
     {
        LinkedList<String> ReturnList = new LinkedList<String>();
         try
@@ -30,6 +31,9 @@ public class UrlSimpleReader implements SomeReader {
                 while((s = br.readLine())!=null)
                 {
                     //System.out.println(s);
+                    /*String[] split;
+                    split = url.split(regmask);
+                    ReturnList.addAll(Arrays.asList(split)); */
                     ReturnList.add(s);
                 }   
                 

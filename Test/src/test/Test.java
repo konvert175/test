@@ -17,8 +17,9 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        SomeReader R = new UrlSimpleReader();
-        LinkedList L = R.Read("https://simbirsoft.com");
+        //SomeReader R = new TestReader();
+        SomeReader R = new UrlReader();
+        LinkedList L = R.Read("https://simbirsoft.com"," |\n");
         for (int i = 0; i < L.size(); i++) {
             System.out.println(String.valueOf(i)+"  " +L.get(i));
         }

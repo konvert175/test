@@ -12,5 +12,5 @@ import java.util.LinkedList;
  * @author User
  */
 public interface SomeReader {
-    public LinkedList<String> Read(String url);  
+    public LinkedList<String> Read(String url,String RegMask);  
 }
