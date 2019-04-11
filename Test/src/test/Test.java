@@ -5,6 +5,7 @@
  */
 package test;
 
+import java.util.*;
 /**
  *
  * @author User
@@ -16,8 +17,11 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.print('f'); 
-        
+        SomeReader R = new UrlSimpleReader();
+        LinkedList L = R.Read("https://simbirsoft.com");
+        for (int i = 0; i < L.size(); i++) {
+            System.out.println(String.valueOf(i)+"  " +L.get(i));
+        }
     }
     
 }
