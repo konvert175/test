@@ -15,12 +15,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author User 
+ * Класс - первая попытка получить информацию с url.
+ * В дальнейшем не используется
  */
 public class UrlSimpleReader implements SomeReader {
 
     @Override
-    public LinkedList<String> Read(String url,String regmask) 
+    public LinkedList<String> Read(String url,String regmask,IWriter Writer) 
     {
        LinkedList<String> ReturnList = new LinkedList<String>();
         try

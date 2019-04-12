@@ -8,9 +8,17 @@ package test;
 import java.util.LinkedList;
 
 /**
- *
- * @author User
+ * Интерфейс - SomeReader
+ * Классы реализующие его выполняют чтение информации откуда-либо
+ * 
  */
 public interface SomeReader {
-    public LinkedList<String> Read(String url,String RegMask);  
+    /**
+     * Возвращает список, содержащий все слова на странице
+     * @param url - строка для получения данных (адрес страницы, имя бд итп)
+     * @param  RegMask - регулярное выражение для разделения
+     * @param  Writer - класс писатель
+     * @return LinkedList - возвращает LinkedList, содержащий слова со страницы разделенные согласно RegMask
+     */
+    public LinkedList<String> Read(String url,String RegMask,IWriter Writer);  
 }

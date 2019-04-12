@@ -6,15 +6,11 @@
 package test;
 
 import java.io.*;
-import java.net.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 /**
  *
@@ -23,7 +19,7 @@ import org.jsoup.nodes.Element;
 public class UrlReader implements SomeReader {
 
     @Override
-    public LinkedList<String> Read(String url,String regmask) 
+    public LinkedList<String> Read(String url,String regmask,IWriter Writer) 
     {
        LinkedList<String> ReturnList = new LinkedList<String>();
         String title="";
@@ -32,6 +28,7 @@ public class UrlReader implements SomeReader {
         try {
             doc = Jsoup.connect(url).get();
             title = doc.title();
+            Writer.Write(doc.html(),"_______________________");
             //System.out.println(doc.getElementsMatchingOwnText("[а-я]").eachText());
             //System.out.println(doc.getElementsMatchingText("[а-я]"));
             String[] split;
