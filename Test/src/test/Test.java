@@ -19,10 +19,17 @@ public class Test {
         // TODO code application logic here
         //SomeReader R = new TestReader();
         SomeReader R = new UrlReader();
-        LinkedList L = R.Read("https://simbirsoft.com"," |\n");
+        IWriter ConsW = new FileWriterM();
+        LinkedList L = R.Read("https://simbirsoft.com",//" |\n|/.");
+        //LinkedList L = R.Read("https://ru.wikipedia.org/wiki/Java",
+        " |\n|\\.|;|,|\\]|\\[|\\!|\\?|\t|\r",ConsW);
+        //" |,|/.|!|?|\"|;|:|[|]|(|)|\n|\r|\t");
         for (int i = 0; i < L.size(); i++) {
             System.out.println(String.valueOf(i)+"  " +L.get(i));
         }
+        ICounter C ;
+        C = new Counter();
+        C.Count(L);
     }
     
 }
