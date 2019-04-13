@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  *
  * Класс - первая попытка получить информацию с url.
  * В дальнейшем не используется
+ * @deprecated 
  */
 public class UrlSimpleReader implements SomeReader {
 

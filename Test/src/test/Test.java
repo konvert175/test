@@ -5,12 +5,12 @@
  */
 package test;
 
+import test.WriterPack.DataBaseWriter;
 import test.CounterPack.ICounter;
 import test.CounterPack.Counter;
 import test.ReaderPack.UrlReader;
 import test.ReaderPack.SomeReader;
-import test.WriterPack.IWriter;
-import test.WriterPack.FileWriterM;
+import test.WriterPack.*;
 import java.util.*;
 /**
  *
@@ -25,17 +25,28 @@ public class Test {
         // TODO code application logic here
         //SomeReader R = new TestReader();
         SomeReader R = new UrlReader();
-        IWriter ConsW = new FileWriterM();
+        IWriter FileW = new FileWriterM();
+        DataBaseWriter DBWriter = new PostgressWriter("Wor");
         LinkedList L = R.Read("https://simbirsoft.com",//" |\n|/.");
         //LinkedList L = R.Read("https://ru.wikipedia.org/wiki/Java",
-        " |\n|\\.|;|,|\\]|\\[|\\!|\\?|\t|\r|\"",ConsW);
+        " |\n|\\.|;|,|\\]|\\[|\\!|\\?|\t|\r|\"",FileW);
         //" |,|/.|!|?|\"|;|:|[|]|(|)|\n|\r|\t");
-        for (int i = 0; i < L.size(); i++) {
+        /*for (int i = 0; i < L.size(); i++) {
             System.out.println(String.valueOf(i)+"  " +L.get(i));
-        }
+        }*/
         ICounter C ;
         C = new Counter();
-        C.Count(L);
+        C.Count(L,DBWriter);
+       // DBWriter.ExecSome();
+        //System.out.println(DBWriter.IsTableExists("wordcount"));
+        //DBWriter.Write("sdfgsgd", "wordcount");
+         /*
+        DBWriter.DropTable("Word685");
+        System.out.println(DBWriter.IsTableExists("Word685"));
+        DBWriter.CreateTable("Word685");
+        System.out.println(DBWriter.IsTableExists("Word685"));
+        */
+        DBWriter.CloseConnect();
     }
     
 }

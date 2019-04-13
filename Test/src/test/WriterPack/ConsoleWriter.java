@@ -18,8 +18,25 @@ public class ConsoleWriter implements IWriter{
      */
     @Override
     public void Write(String InputString, String FirstRow) {
+        try{
         System.out.println(FirstRow);
         System.out.println(InputString);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void Write(String InputString) {
+        try{
+        System.out.println(InputString);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
     
 }

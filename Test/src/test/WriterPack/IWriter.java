@@ -16,7 +16,12 @@ public interface IWriter {
      * Получает данные в строковой форме - сохраняет в зависимости от типа класса-наследника
      * @param InputString - входная строка, которую необходимо сохранить
      * @param NameOf - имя для приемника (файл, бд, первая строка при выводе в консоль)
+     * @deprecated 
      */
     public void Write(String InputString,String NameOf);
-    
+    /**
+     * Получает данные в строковой форме - сохраняет в зависимости от типа класса-наследника
+     * @param InputString - входная строка, которую необходимо сохранить
+     */
+    public void Write(String InputString);
 }

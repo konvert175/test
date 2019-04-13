@@ -15,38 +15,40 @@ import org.jsoup.nodes.Document;
 
 /**
  *
- * @author User 
+ * Основной класс для чтения информации из url
  */
 public class UrlReader implements SomeReader {
-
+    /**
+     * Возвращает список, содержащий все слова на странице
+     * @param url - строка для получения данных (адрес страницы, имя бд итп)
+     * @param  RegMask - регулярное выражение для разделения
+     * @param  Writer - класс писатель
+     * @return LinkedList - возвращает LinkedList, содержащий слова со страницы разделенные согласно RegMask
+     */ 
     @Override
     public LinkedList<String> Read(String url,String regmask,IWriter Writer) 
     {
-       LinkedList<String> ReturnList = new LinkedList<String>();
-        String title="";
-        // JSoup Example 2 - Reading HTML page from URL
+        LinkedList<String> ReturnList = new LinkedList<String>();
         Document doc;
-        try {
-            doc = Jsoup.connect(url).get();
-            title = doc.title();
-            Writer.Write(doc.html(),"_______________________");
-            //System.out.println(doc.getElementsMatchingOwnText("[а-я]").eachText());
-            //System.out.println(doc.getElementsMatchingText("[а-я]"));
+        try    
+        {
+            doc = Jsoup.connect(url).get();             
+            Writer.Write(doc.html());
             String[] split;
             List<String> S = doc.getElementsMatchingOwnText("[а-я]").eachText();
-           for (String S1 : S) {
-                //System.out.println(S1);
+            for (String S1 : S) {;
                 split = S1.split(regmask);
                 ReturnList.addAll(Arrays.asList(split)); 
-           }
-        } catch (IOException e) {
+            }
+        } 
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
-
-        //System.out.println("Jsoup Can read HTML page from URL, title : " + title);
+        /*
         for (int i = 0; i < ReturnList.size(); i++) {
             System.out.println(String.valueOf(i)+"  " +ReturnList.get(i));
-        }
+        }*/
         return ReturnList;
     }
     

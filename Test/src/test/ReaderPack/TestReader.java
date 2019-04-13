@@ -13,6 +13,7 @@ import java.util.LinkedList;
  *
  * Тестовый класс, для отладки.
  * В дальнейшем не используется
+ * @deprecated 
  */
 public class TestReader implements SomeReader{
     @Override
@@ -35,7 +36,7 @@ public class TestReader implements SomeReader{
         //split = S.split(" |\n");
         split = url.split(regmask);
         ReturnList.addAll(Arrays.asList(split));
-        Writer.Write(url,"_______________________");        
+        Writer.Write(url);        
         return ReturnList;
     }
 }

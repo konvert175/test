@@ -7,6 +7,7 @@ package test.CounterPack;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import test.WriterPack.IWriter;
 
 /** 
  * Интерфейс ICounter - подразумевается, что классов "Считателей", реализующих этот интерфейс
@@ -18,7 +19,8 @@ public interface ICounter {
     /**
      * Подсчитаывает кол-во вхождений слова на странице
      * @param LinkedList - список всех слов с страницы, разделенных согласно правилам
+     * @param IWriter - класс писатель, определяющий куда вывести результат
      * @return ArrayList - возвращает ArrayList, содержащий структуру WordCount
      */
-    public ArrayList<WordCount> Count(LinkedList<String> InputList);  
+    public ArrayList<WordCount> Count(LinkedList<String> InputList,IWriter WriteT);  
 }

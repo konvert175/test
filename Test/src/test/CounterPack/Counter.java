@@ -7,6 +7,7 @@ package test.CounterPack;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import test.WriterPack.IWriter;
 
 /**
  *  Отвечает за подсчет кол-ва элементов в списке
@@ -17,9 +18,10 @@ public class Counter implements ICounter {
     /**
      * Реализует подсчет кол-ва элементов в списке
      * @return  ArrayList
+     * @param IWriter - класс писатель, определяющий куда вывести результат
      * @param LinkedList
      */
-    public ArrayList<WordCount> Count(LinkedList<String> InputList) {
+    public ArrayList<WordCount> Count(LinkedList<String> InputList,IWriter WriteTo) {
         ArrayList<String> A;
         ArrayList<WordCount> ReturnArrayList;
         ReturnArrayList = new ArrayList<>();
@@ -40,7 +42,7 @@ public class Counter implements ICounter {
             }
         }
         ReturnArrayList.forEach((W) -> {
-            System.out.println(W.GetWordAndCountToString());
+            WriteTo.Write(W.GetWordAndCountToString());
         });
         return ReturnArrayList;
     }

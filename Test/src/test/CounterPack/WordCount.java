@@ -20,7 +20,7 @@ public class WordCount {
     /** Поле количество вхождений слова */
     private int count;
     /** 
-     * Конструктор - создание нового объекта,
+     * Конструктор,
      * count принимаем по умолчанию равным 1
      * @param word - слово
      * @see WordCount#WordCount()
@@ -31,9 +31,6 @@ public class WordCount {
         count=1;
         All_ID++;
         id = All_ID;
- //       System.out.print(word+" ");
- //       if (word.endsWith(" "))
- //           System.out.println("ПРОБЕЛЫ ТОЖЕ ПОПАДАЮТ");
     }
     /**
      * Увеличивает число вхождений слова {@link WordCount#word}
