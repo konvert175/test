@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package test.ReaderPack;
 
+import test.WriterPack.IWriter;
 import java.io.*;
 import java.util.Arrays;
 import java.util.LinkedList;

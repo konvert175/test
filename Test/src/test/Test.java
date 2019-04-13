@@ -5,6 +5,12 @@
  */
 package test;
 
+import test.CounterPack.ICounter;
+import test.CounterPack.Counter;
+import test.ReaderPack.UrlReader;
+import test.ReaderPack.SomeReader;
+import test.WriterPack.IWriter;
+import test.WriterPack.FileWriterM;
 import java.util.*;
 /**
  *
@@ -22,7 +28,7 @@ public class Test {
         IWriter ConsW = new FileWriterM();
         LinkedList L = R.Read("https://simbirsoft.com",//" |\n|/.");
         //LinkedList L = R.Read("https://ru.wikipedia.org/wiki/Java",
-        " |\n|\\.|;|,|\\]|\\[|\\!|\\?|\t|\r",ConsW);
+        " |\n|\\.|;|,|\\]|\\[|\\!|\\?|\t|\r|\"",ConsW);
         //" |,|/.|!|?|\"|;|:|[|]|(|)|\n|\r|\t");
         for (int i = 0; i < L.size(); i++) {
             System.out.println(String.valueOf(i)+"  " +L.get(i));

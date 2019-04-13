@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package test.CounterPack;
 
 /** 
  * Класс Слово с полями <b>word</b> и <b>count</b>.
@@ -11,8 +11,12 @@ package test;
  * @version 1
 */
 public class WordCount {
+    /** Поле ID */
+    private int id;
+    /** Поле глобальный счетчик ID */
+    private static int All_ID=0;
     /** Поле слово */
-    private String word;
+    private final String word;
     /** Поле количество вхождений слова */
     private int count;
     /** 
@@ -25,7 +29,9 @@ public class WordCount {
     {
         this.word = word;
         count=1;
-        System.out.print(word+" ");
+        All_ID++;
+        id = All_ID;
+ //       System.out.print(word+" ");
  //       if (word.endsWith(" "))
  //           System.out.println("ПРОБЕЛЫ ТОЖЕ ПОПАДАЮТ");
     }
@@ -42,7 +48,7 @@ public class WordCount {
      */
     public String GetWordAndCountToString()
     {
-        return word +" "+ String.valueOf(count);
+        return String.valueOf(id) +" "+word +" "+ String.valueOf(count);
     }
     /**
      * Возвращает слово {@link WordCount#word}
