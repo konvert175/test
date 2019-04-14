@@ -29,12 +29,12 @@ public class Test {
         
         System.out.println("Введите URL (по умолчанию будет подставлено https://simbirsoft.com)");
         Scanner in = new Scanner(System.in);
-        String URL = in.nextLine();
+        String URL = InputStringAnaliser.AnaliseUrl(in.nextLine());
         if (URL.equals(""))
             URL = "https://simbirsoft.com";
         System.out.println("Будет осуществлен подсчет слов со страницы "+URL);
         System.out.println("Введите предподчтительный способ вывода результат (пусто - на экран, иначе в таблицу, имя которой будет введено");
-        String TableName = in.nextLine();
+        String TableName = InputStringAnaliser.AnaliseTableName(in.nextLine());
         
         LinkedList L = R.Read(URL," |\n|\\.|;|,|\\]|\\[|\\!|\\?|\t|\r|\"",FileW);
         ICounter C = new Counter();
@@ -45,12 +45,25 @@ public class Test {
             
         }
         else
-        {         
-            DataBaseWriter DBWriter = new PostgressWriter(TableName);     
+        {
+            try
+            {
+            System.out.println("Введите имя пользователя");
+            String UserName = in.nextLine();
+            System.out.println("Введите пароль пользователя");
+            String UserPass = in.nextLine();
+            DataBaseWriter DBWriter = new PostgressWriter(UserName,UserPass,TableName);     
             C.Count(L,DBWriter);
-            System.out.println("Результат сохранен в таблице"+TableName);
+            System.out.println("Результат сохранен в таблице "+TableName);
             DBWriter.CloseConnect();
+            }
+            catch (Exception e)
+            {
+                System.out.print("Ошибка "+e.getMessage());
+            }
         }
+        System.out.println("Страница сохранена в каталоге test\\Test");
+    }
         
         //" |,|/.|!|?|\"|;|:|[|]|(|)|\n|\r|\t");
         /*for (int i = 0; i < L.size(); i++) {
@@ -67,6 +80,6 @@ public class Test {
         System.out.println(DBWriter.IsTableExists("Word685"));
         */
         
-    }
-    
 }
+    
+

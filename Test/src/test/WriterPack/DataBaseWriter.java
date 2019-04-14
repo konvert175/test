@@ -6,9 +6,7 @@
 package test.WriterPack;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -35,12 +33,12 @@ public abstract class DataBaseWriter implements IWriter {
      * Проверяет существование таблицы
      * @param  NameTable - название таблицы
      */
-    public abstract boolean IsTableExists(String NameTable);
+    public abstract boolean IsTableExists(String NameTable)throws SQLException;
     /**
      * Создает таблицу
      * @param  NameTable - название таблицы
      */
-    public abstract void CreateTable(String NameTable);
+    public abstract void CreateTable(String NameTable)throws SQLException;
     /**
      * Получает одну строку из БД на основании SQL запроса
      * @deprecated 
@@ -121,8 +119,9 @@ public abstract class DataBaseWriter implements IWriter {
      /**
      * Удаляем таблицу
      * @param TableName - название таблицы под удаление
+     * @throws SQLException
      */
-    public void DropTable(String TableName)
+    public void DropTable(String TableName) throws SQLException
     {
         Statement statement;
 	String createTableSQL = 
@@ -134,7 +133,7 @@ public abstract class DataBaseWriter implements IWriter {
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            throw e;
         }    
     }
 }

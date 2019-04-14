@@ -20,8 +20,9 @@ public class PostgressWriter extends DataBaseWriter {
      * Конструктор,
      * Поля заполняем по умолчанию
      * Таблицу назовем - wordcount
+     * @throws java.sql.SQLException
      */
-    public PostgressWriter()
+    public PostgressWriter()throws SQLException
     {   
         ServerName = "jdbc:postgresql://127.0.0.1:5432/postgres";
         UserName = "postgres";
@@ -34,8 +35,9 @@ public class PostgressWriter extends DataBaseWriter {
      * Конструктор,
      * Основные поля заполняем по умолчанию
      * @param TableName - название таблицы
+     * @throws java.sql.SQLException
      */
-    public PostgressWriter(String TableName)
+    public PostgressWriter(String TableName)throws SQLException
     {   
         ServerName = "jdbc:postgresql://127.0.0.1:5432/postgres";
         UserName = "postgres";
@@ -50,8 +52,9 @@ public class PostgressWriter extends DataBaseWriter {
      * @param TableName - название таблицы
      * @param UserName - имя пользователя БД
      * @param UserPass - пароль пользователя БД
+     * @throws java.sql.SQLException
      */
-    public PostgressWriter(String UserName,String UserPass,String TableName)
+    public PostgressWriter(String UserName,String UserPass,String TableName)throws SQLException
     {
          this.UserName = UserName;
          this.UserPass = UserPass;
@@ -68,8 +71,9 @@ public class PostgressWriter extends DataBaseWriter {
      * @param UserPass - пароль пользователя БД
      * @param ServerName - имя сервера БД
      * @param Port - порт, используемый для соединения с БД
+     * @throws java.sql.SQLException
      */
-    public PostgressWriter(String ServerName,String Port,String UserName,String UserPass,String TableName)
+    public PostgressWriter(String ServerName,String Port,String UserName,String UserPass,String TableName)throws SQLException
     {
         this(UserName,UserPass,TableName);
         this.ServerName="jdbc:"+ServerName+"://127.0.0.1:"+Port+"/postgres";
@@ -86,9 +90,10 @@ public class PostgressWriter extends DataBaseWriter {
     /**
      * Проверяет существование таблицы
      * @param  NameTable - название таблицы
+     * @throws  SQLException
      */
     @Override
-    public boolean IsTableExists(String NameTable) {
+    public boolean IsTableExists(String NameTable) throws SQLException {
         String selectTableSQL = 
             "SELECT count(1) FROM information_schema.tables\n" +
             "where table_name = '"+NameTable.toLowerCase()+"';";
@@ -106,7 +111,8 @@ public class PostgressWriter extends DataBaseWriter {
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            
+            throw e;
         }
         //System.out.println("FALSE");
         return false;
@@ -114,9 +120,10 @@ public class PostgressWriter extends DataBaseWriter {
     /**
      * Создает таблицу
      * @param  NameTable - название таблицы
+     * @throws java.sql.SQLException
      */
     @Override
-    public void CreateTable(String NameTable) {
+    public void CreateTable(String NameTable) throws SQLException {
         Statement statement;
 	String createTableSQL = 
                 "create table "+NameTable+" ("+
@@ -132,14 +139,16 @@ public class PostgressWriter extends DataBaseWriter {
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            
+            throw e;
         }
     }
     /**
      * Служебный метод - открывает соединение с БД, на основании параметров в конструкторе.
      * Вызывается из конструктора. 
+     * @throws SQLException
      */
-    private void Connect() 
+    private void Connect() throws SQLException
     { 
         try
         {
@@ -147,14 +156,16 @@ public class PostgressWriter extends DataBaseWriter {
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            
+            throw e;
         }
     }
      /**
      * Служебный метод - пересоздает таблицу, если она есть, иначе создает
      * Вызывается из метода Write. 
+     * @throws SQLException
      */
-    void replaceTable()
+    void replaceTable() throws SQLException
     {
         if (IsTableExists(TableName))
         {

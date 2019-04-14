@@ -28,6 +28,8 @@ public class UrlReader implements SomeReader {
     @Override
     public LinkedList<String> Read(String url,String regmask,IWriter Writer) 
     {
+        //grabAllMemory();
+        
         LinkedList<String> ReturnList = new LinkedList<String>();
         Document doc;
         try    
@@ -45,11 +47,26 @@ public class UrlReader implements SomeReader {
         {
             e.printStackTrace();
         }
+        catch (java.lang.OutOfMemoryError e)
+        {
+            System.out.println("поймали OutOfMemoryError  "+e.getMessage());
+            //ошибка не отлавливается
+            //Совершенно не понимаю - как можно обработать закончившеюся оперативную память
+        }
         /*
         for (int i = 0; i < ReturnList.size(); i++) {
             System.out.println(String.valueOf(i)+"  " +ReturnList.get(i));
         }*/
         return ReturnList;
     }
+     /**
+     * метод для тестирования ситуации - когда консилась оперативная память
+     */ 
+    private void grabAllMemory() {
+    List<Object[]> arrays = new LinkedList<>();
+    for (; ; ) {
+      arrays.add(new Object[100]);
+    }
+  }
     
 }
