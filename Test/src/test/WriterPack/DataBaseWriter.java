@@ -30,7 +30,7 @@ public abstract class DataBaseWriter implements IWriter {
      * Метод на выполнение
      * @deprecated 
      */
-    public abstract void ExecSome();
+    abstract void ExecSome();
     /**
      * Проверяет существование таблицы
      * @param  NameTable - название таблицы
@@ -45,7 +45,7 @@ public abstract class DataBaseWriter implements IWriter {
      * Получает одну строку из БД на основании SQL запроса
      * @deprecated 
      */
-    public String GetOneRowBySQL(String SQL) 
+    String GetOneRowBySQL(String SQL) 
     { 
         return "";
     }

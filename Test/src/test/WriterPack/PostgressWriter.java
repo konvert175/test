@@ -79,7 +79,7 @@ public class PostgressWriter extends DataBaseWriter {
      * @deprecated 
      */
     @Override
-    public void ExecSome() 
+    void ExecSome() 
     {
         Statement statement;
     }
@@ -91,17 +91,17 @@ public class PostgressWriter extends DataBaseWriter {
     public boolean IsTableExists(String NameTable) {
         String selectTableSQL = 
             "SELECT count(1) FROM information_schema.tables\n" +
-            "where table_name = '"+NameTable+"';";
+            "where table_name = '"+NameTable.toLowerCase()+"';";
+        //System.out.println(selectTableSQL);
         try 
         {
 	Statement statement = connection.createStatement();
 	ResultSet rs = statement.executeQuery(selectTableSQL);
-
-	// И если что то было получено то цикл while сработает   
 	while (rs.next()) 
             {
                 //System.out.println("TRUE "+rs.getString(1));
-                return true;       
+                if (rs.getString(1).equals("1"))
+                    return true;       
             }
         }
         catch (SQLException e)
@@ -126,7 +126,9 @@ public class PostgressWriter extends DataBaseWriter {
 	try 
         {
 		statement = connection.createStatement();
+                //System.out.println(TableName+" create 1");
 		statement.execute(createTableSQL);
+                //System.out.println(TableName+" create 2");
         }
         catch (SQLException e)
         {
@@ -159,7 +161,7 @@ public class PostgressWriter extends DataBaseWriter {
             DropTable(TableName);
             //System.out.println(TableName+" has been deleted");
             CreateTable(TableName);
-            //System.out.println(TableName+" has been created");
+            //System.out.println(TableName+" has been created after deleting");
         }
         else
         {
